@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">Microscope</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_microscope">Microscope</string>
+    
+    <string name="open_file">open</string>
+    <string name="capture_image">capture</string>
+    <string name="result_code">result</string>
+    <string name="save_file">save</string>
+
+</resources>
