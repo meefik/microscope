@@ -1,11 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.lomo.microscope"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionCode="3"
+    android:versionName="1.0.2" >
 
     <uses-sdk
         android:minSdkVersion="4"
-        android:targetSdkVersion="15" />
+        android:targetSdkVersion="16" />
     
     <uses-permission android:name="android.permission.CAMERA"></uses-permission>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
@@ -22,6 +22,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".PreferencesActivity"
+            android:icon="@drawable/ic_launcher_settings"
+            android:label="@string/title_activity_preferences" >
         </activity>
     </application>
 

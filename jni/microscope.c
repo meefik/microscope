@@ -30,7 +30,7 @@
 #include <linux/types.h>
 #include <linux/videodev.h>
 
-#define DEFAULT_FILE "/dev/video0"
+#define DEFAULT_FILE "/dev/video1"
 #define PROGNAME "libmicroscope"
 #define VERSION "1.0"
 #define MAX_BRIGHTNESS_LOOPS 100
@@ -226,7 +226,7 @@ static void print_image_size_help(void)
                   " max   for maximum size supported by camera\n");
 }
 
-JNIEXPORT jstring JNICALL Java_lomo_app_Microscope_capture
+JNIEXPORT jstring JNICALL Java_ru_lomo_microscope_Microscope_capture
   (JNIEnv * env, jobject obj, jobject globalRef) {
 
 	/*** variable definitions ***/
@@ -715,7 +715,7 @@ JNIEXPORT jstring JNICALL Java_lomo_app_Microscope_capture
 	return (*env)->NewStringUTF(env, "SUCCESS");
 }
 
-JNIEXPORT jstring JNICALL Java_lomo_app_Microscope_open
+JNIEXPORT jstring JNICALL Java_ru_lomo_microscope_Microscope_open
   (JNIEnv * env, jobject obj) {
 
 	int fd = -1;
@@ -730,14 +730,14 @@ JNIEXPORT jstring JNICALL Java_lomo_app_Microscope_open
 	return (*env)->NewStringUTF(env, "SUCCESS");
 }
 
-JNIEXPORT jstring JNICALL Java_lomo_app_Microscope_close
+JNIEXPORT jstring JNICALL Java_ru_lomo_microscope_Microscope_close
   (JNIEnv * env, jobject obj) {
 
 	
 	return (*env)->NewStringUTF(env, "SUCCESS");
 }
 
-JNIEXPORT jobject JNICALL Java_lomo_app_Microscope_allocNativeBuffer(JNIEnv* env, jobject thiz, jlong size)
+JNIEXPORT jobject JNICALL Java_ru_lomo_microscope_Microscope_allocNativeBuffer(JNIEnv* env, jobject thiz, jlong size)
 {
 	void* buffer = malloc(size);
 	jobject directBuffer = (*env)->NewDirectByteBuffer(env, buffer, size);
@@ -745,7 +745,7 @@ JNIEXPORT jobject JNICALL Java_lomo_app_Microscope_allocNativeBuffer(JNIEnv* env
 	return globalRef;
 }
 
-JNIEXPORT void JNICALL Java_lomo_app_Microscope_freeNativeBuffer(JNIEnv* env, jobject thiz, jobject globalRef)
+JNIEXPORT void JNICALL Java_ru_lomo_microscope_Microscope_freeNativeBuffer(JNIEnv* env, jobject thiz, jobject globalRef)
 {
 	void *buffer = (*env)->GetDirectBufferAddress(env, globalRef);
 	(*env)->DeleteGlobalRef(env, globalRef);

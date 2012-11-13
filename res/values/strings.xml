@@ -3,10 +3,37 @@
     <string name="app_name">Microscope</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_microscope">Microscope</string>
+    <string name="title_activity_preferences">Microscope</string>
     
-    <string name="open_file">open</string>
     <string name="capture_image">capture</string>
-    <string name="result_code">result</string>
+    <string name="result_code">result status</string>
+    
+    <!-- 
     <string name="save_file">save</string>
+    <string name="open_file">open</string>
+     -->
+    
+    <string name="title_devpath_preferences">Device path</string>
+    <string name="summary_devpath_preferences">/dev/video0</string>
+    <string name="dialog_title_devpath_preference">Device path</string>
+
+    <string name="title_saveimg_preferences">Save captured image</string>
+    <string name="summary_saveimg_preferences">Enable saving captured image</string>
+
+    <string name="title_imgname_preferences">File name to save</string>
+    <string name="summary_imgname_preferences">/mnt/sdcard/capture.jpg</string>
+    <string name="dialog_title_imgname_preference">File name to save</string>
+    
+    <string name="title_installdrv_preference">Install driver</string>
+    <string name="summary_installdrv_preference">Install microscope driver on the system</string>
+    <string name="message_installdrv_confirm_dialog">Install microscope driver on the system?</string>
+    
+    <string name="title_loaddrv_preference">Load driver</string>
+    <string name="summary_loaddrv_preference">Load microscope driver</string>
+    <string name="message_loaddrv_confirm_dialog">Load microscope driver?</string>
+    
+    <string name="title_removedrv_preference">Remove driver</string>
+    <string name="summary_removedrv_preference">Remove microscope driver</string>
+    <string name="message_removedrv_confirm_dialog">Remove microscope driver?</string>
 
 </resources>
