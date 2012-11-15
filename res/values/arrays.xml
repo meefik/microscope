@@ -4,7 +4,8 @@
     
     <string-array name="platform_entries">
         <item>enTourage eDGe</item>
-        <item>PMP3170B V1.0.4 4.0.3 IML47K</item>
+        <!-- PMP3170B V1.0.4 4.0.3 IML47K -->
+        <item>Prestigio Miltipad 7.0 Pro</item>
     </string-array>
     
     <string-array name="platform_values">

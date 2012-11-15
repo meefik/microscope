@@ -94,7 +94,7 @@ public class Microscope extends Activity {
 			public void onClick(View v) {
 				File root = Environment.getExternalStorageDirectory();
 				SharedPreferences sp = PreferenceManager
-						.getDefaultSharedPreferences(getBaseContext());
+						.getDefaultSharedPreferences(getApplicationContext());
 				String imgPath = sp.getString("imgpath", root.getAbsolutePath());
 				image.setDrawingCacheEnabled(true);
 				Bitmap bitmap = image.getDrawingCache();

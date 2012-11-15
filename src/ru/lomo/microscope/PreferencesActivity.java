@@ -14,6 +14,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -33,6 +34,11 @@ public class PreferencesActivity extends PreferenceActivity implements
 		this.addPreferencesFromResource(R.xml.preferences);
 		this.initSummaries(this.getPreferenceScreen());
 		FILES_DIR = getFilesDir().getAbsolutePath();
+		File root = Environment.getExternalStorageDirectory();
+		SharedPreferences sp = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
+		sp.edit().putString("imgpath", sp.getString("imgpath", root.getAbsolutePath()));
+		sp.edit().commit();
 	}
 
 	public boolean onPreferenceClick(Preference preference) {
