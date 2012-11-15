@@ -19,6 +19,7 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceGroup;
+import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 
 public class PreferencesActivity extends PreferenceActivity implements
@@ -95,7 +96,10 @@ public class PreferencesActivity extends PreferenceActivity implements
 		InputStream in = null;
 		OutputStream out = null;
 		try {
-			in = assetManager.open("drivers/" + filename);
+			SharedPreferences sp = PreferenceManager
+					.getDefaultSharedPreferences(getBaseContext());
+			String platform = sp.getString("platform", "edge");
+			in = assetManager.open("drivers/" + platform + "/" + filename);
 			String newFileName = FILES_DIR + File.separator + filename;
 			out = new FileOutputStream(newFileName);
 

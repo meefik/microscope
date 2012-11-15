@@ -9,6 +9,10 @@
     <string name="stop_button">stop</string>
     <string name="save_button">save</string>
     <string name="result_code">result status</string>
+
+    <string name="title_platform_preferences">Platform</string>
+    <string name="summary_platform_preferences">edge</string>
+    <string name="dialog_title_platform_preference">Supported platforms</string>
     
     <string name="title_devpath_preferences">Device path</string>
     <string name="summary_devpath_preferences">/dev/video0</string>

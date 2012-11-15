@@ -3,13 +3,13 @@
 <resources>
     
     <string-array name="platform_entries">
-        <item>PMP3170B V1.0.4 4.0.3 IML47K</item>
         <item>enTourage eDGe</item>
+        <item>PMP3170B V1.0.4 4.0.3 IML47K</item>
     </string-array>
     
-    <string-array name="platforms_values">
-        <item>prestigio</item>
+    <string-array name="platform_values">
         <item>edge</item>
+        <item>prestigio</item>
     </string-array>
     
 </resources>

@@ -2,6 +2,15 @@
 
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
+        
+    	<ListPreference
+    	        android:key="platform"
+        	    android:defaultValue="@string/summary_platform_preferences"
+            	android:title="@string/title_platform_preferences"
+            	android:summary="@string/summary_platform_preferences"
+            	android:entries="@array/platform_entries"
+            	android:entryValues="@array/platform_values"
+            	android:dialogTitle="@string/dialog_title_platform_preference" />
 
 	    <PreferenceScreen
 	        	android:key="installdrv"
