@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+	    <PreferenceScreen
+	        	android:key="installdrv"
+                android:title="@string/title_installdrv_preference"
+                android:summary="@string/summary_installdrv_preference" />
+<!-- 	    
+	    <PreferenceScreen
+	        	android:key="loaddrv"
+                android:title="@string/title_loaddrv_preference"
+                android:summary="@string/summary_loaddrv_preference" />
+ -->	    
+	    <PreferenceScreen
+	        	android:key="removedrv"
+                android:title="@string/title_removedrv_preference"
+                android:summary="@string/summary_removedrv_preference" />
+    
+	    <EditTextPreference
+    	        android:key="devpath"
+        	    android:defaultValue="@string/summary_devpath_preferences"
+            	android:title="@string/title_devpath_preferences"
+            	android:summary="@string/summary_devpath_preferences"
+            	android:dialogTitle="@string/dialog_title_devpath_preference" />
+
+	   	<CheckBoxPreference
+  	        	android:key="saveimg"
+       	    	android:defaultValue="false"
+           		android:title="@string/title_saveimg_preferences"
+            	android:summary="@string/summary_saveimg_preferences" />
+       	
+	    <EditTextPreference
+    	        android:key="imgname"
+    	        android:dependency="saveimg"
+        	    android:defaultValue="@string/summary_imgname_preferences"
+            	android:title="@string/title_imgname_preferences"
+            	android:summary="@string/summary_imgname_preferences"
+            	android:dialogTitle="@string/dialog_title_imgname_preference" />
+
+</PreferenceScreen>
