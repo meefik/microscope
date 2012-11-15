@@ -22,21 +22,18 @@ import android.preference.PreferenceGroup;
 import android.preference.PreferenceScreen;
 
 public class PreferencesActivity extends PreferenceActivity implements
-		OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener {
+	OnSharedPreferenceChangeListener, Preference.OnPreferenceClickListener {
 
 	private String FILES_DIR;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		addPreferencesFromResource(R.xml.preferences);
-
+		this.addPreferencesFromResource(R.xml.preferences);
 		this.initSummaries(this.getPreferenceScreen());
-
 		FILES_DIR = getFilesDir().getAbsolutePath();
 	}
 
-	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		if (preference.getKey().equals("installdrv")) {
 			installDrvDialog();
@@ -48,26 +45,26 @@ public class PreferencesActivity extends PreferenceActivity implements
 	}
 
 	@Override
+	public void onPause() {
+		super.onPause();
+		this.getPreferenceScreen().getSharedPreferences()
+				.unregisterOnSharedPreferenceChangeListener(this);
+	}
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		this.getPreferenceScreen().getSharedPreferences()
+				.registerOnSharedPreferenceChangeListener(this);
+	}
+	
+	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 			String key) {
 		Preference pref = this.findPreference(key);
 		this.setSummary(pref, true);
 	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		getPreferenceScreen().getSharedPreferences()
-				.registerOnSharedPreferenceChangeListener(this);
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		getPreferenceScreen().getSharedPreferences()
-				.unregisterOnSharedPreferenceChangeListener(this);
-	}
-
+	
 	private void initSummaries(PreferenceGroup pg) {
 		for (int i = 0; i < pg.getPreferenceCount(); ++i) {
 			Preference p = pg.getPreference(i);
@@ -98,7 +95,7 @@ public class PreferencesActivity extends PreferenceActivity implements
 		InputStream in = null;
 		OutputStream out = null;
 		try {
-			in = assetManager.open("drivers/edge/" + filename);
+			in = assetManager.open("drivers/" + filename);
 			String newFileName = FILES_DIR + File.separator + filename;
 			out = new FileOutputStream(newFileName);
 
@@ -176,7 +173,6 @@ public class PreferencesActivity extends PreferenceActivity implements
 									msg = "Instal driver OK";
 								}
 								Microscope.handler.post(new Runnable() {
-									@Override
 									public void run() {
 										Microscope.printStatusMsg(msg);
 									}
@@ -220,7 +216,6 @@ public class PreferencesActivity extends PreferenceActivity implements
 									msg = "Remove driver OK";
 								}
 								Microscope.handler.post(new Runnable() {
-									@Override
 									public void run() {
 										Microscope.printStatusMsg(msg);
 									}

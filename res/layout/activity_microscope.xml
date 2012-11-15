@@ -9,10 +9,22 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/capture_button"
+            android:id="@+id/startBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/capture_image" />
+            android:text="@string/start_button" />
+
+        <Button
+            android:id="@+id/stopBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stop_button" />
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_button" />
 
         <TextView
             android:id="@+id/textView1"

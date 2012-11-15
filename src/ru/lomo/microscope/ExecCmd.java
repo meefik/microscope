@@ -37,7 +37,6 @@ public class ExecCmd implements Runnable {
 		}
 	}
 
-	@Override
 	public void run() {
 		try {
 			Process process = Runtime.getRuntime().exec(params.get(0));
