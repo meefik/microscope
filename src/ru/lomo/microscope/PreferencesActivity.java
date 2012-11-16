@@ -37,6 +37,7 @@ public class PreferencesActivity extends PreferenceActivity implements
 			SharedPreferences sp = PreferenceManager
 					.getDefaultSharedPreferences(getBaseContext());
 			String platform = sp.getString("platform", "edge");
+			System.out.println("############# "+platform);
 			in = assetManager.open("drivers/" + platform + "/" + filename);
 			String newFileName = FILES_DIR + File.separator + filename;
 			out = new FileOutputStream(newFileName);
@@ -89,7 +90,57 @@ public class PreferencesActivity extends PreferenceActivity implements
 				p.setOnPreferenceClickListener(this);
 		}
 	}
+	
+	private void setSummary(Preference pref, boolean init) {
+		if (pref instanceof EditTextPreference) {
+			EditTextPreference editPref = (EditTextPreference) pref;
+			pref.setSummary(editPref.getText());
+		}
 
+		if (pref instanceof ListPreference) {
+			ListPreference listPref = (ListPreference) pref;
+			pref.setSummary(listPref.getEntry());
+		}
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		this.addPreferencesFromResource(R.xml.preferences);
+		this.initSummaries(this.getPreferenceScreen());
+		FILES_DIR = getFilesDir().getAbsolutePath();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		this.getPreferenceScreen().getSharedPreferences()
+				.unregisterOnSharedPreferenceChangeListener(this);
+	}
+
+	public boolean onPreferenceClick(Preference preference) {
+		if (preference.getKey().equals("installdrv")) {
+			installDrvDialog();
+		}
+		if (preference.getKey().equals("removedrv")) {
+			removeDrvDialog();
+		}
+		return true;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		this.getPreferenceScreen().getSharedPreferences()
+				.registerOnSharedPreferenceChangeListener(this);
+	}
+
+	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
+			String key) {
+		Preference pref = this.findPreference(key);
+		this.setSummary(pref, true);
+	}
+	
 	private void installDrvDialog() {
 		new AlertDialog.Builder(this)
 				.setTitle(R.string.title_installdrv_preference)
@@ -142,44 +193,6 @@ public class PreferencesActivity extends PreferenceActivity implements
 						}).show();
 	}
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		this.addPreferencesFromResource(R.xml.preferences);
-		this.initSummaries(this.getPreferenceScreen());
-		FILES_DIR = getFilesDir().getAbsolutePath();
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		this.getPreferenceScreen().getSharedPreferences()
-				.unregisterOnSharedPreferenceChangeListener(this);
-	}
-
-	public boolean onPreferenceClick(Preference preference) {
-		if (preference.getKey().equals("installdrv")) {
-			installDrvDialog();
-		}
-		if (preference.getKey().equals("removedrv")) {
-			removeDrvDialog();
-		}
-		return true;
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		this.getPreferenceScreen().getSharedPreferences()
-				.registerOnSharedPreferenceChangeListener(this);
-	}
-
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-			String key) {
-		Preference pref = this.findPreference(key);
-		this.setSummary(pref, true);
-	}
-
 	private void removeDrvDialog() {
 		new AlertDialog.Builder(this)
 				.setTitle(R.string.title_removedrv_preference)
@@ -221,18 +234,6 @@ public class PreferencesActivity extends PreferenceActivity implements
 								dialog.cancel();
 							}
 						}).show();
-	}
-
-	private void setSummary(Preference pref, boolean init) {
-		if (pref instanceof EditTextPreference) {
-			EditTextPreference editPref = (EditTextPreference) pref;
-			pref.setSummary(editPref.getText());
-		}
-
-		if (pref instanceof ListPreference) {
-			ListPreference listPref = (ListPreference) pref;
-			pref.setSummary(listPref.getEntry());
-		}
 	}
 
 }
