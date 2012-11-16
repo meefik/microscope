@@ -14,7 +14,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -89,7 +88,7 @@ public class PreferencesActivity extends PreferenceActivity implements
 				p.setOnPreferenceClickListener(this);
 		}
 	}
-	
+
 	private void setSummary(Preference pref, boolean init) {
 		if (pref instanceof EditTextPreference) {
 			EditTextPreference editPref = (EditTextPreference) pref;
@@ -139,7 +138,7 @@ public class PreferencesActivity extends PreferenceActivity implements
 		Preference pref = this.findPreference(key);
 		this.setSummary(pref, true);
 	}
-	
+
 	private void installDrvDialog() {
 		new AlertDialog.Builder(this)
 				.setTitle(R.string.title_installdrv_preference)

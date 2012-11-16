@@ -42,17 +42,17 @@ public class Microscope extends Activity {
 	public native ByteBuffer allocNativeBuffer(long size);
 
 	public native String capture(ByteBuffer globalRef, long imgSize);
-	
+
 	public native String open(String device);
-	
+
 	public native String close();
 
 	public native void freeNativeBuffer(ByteBuffer globalRef);
-	
+
 	public static void printStatusMsg(String msg) {
 		logView.setText(msg);
 	}
-	
+
 	private void showStatus(final String msg) {
 		handler.post(new Runnable() {
 			public void run() {
