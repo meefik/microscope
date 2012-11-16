@@ -8,7 +8,7 @@
     <string name="start_button">start</string>
     <string name="stop_button">stop</string>
     <string name="save_button">save</string>
-    <string name="result_code">result status</string>
+    <string name="result_code">ready</string>
 
     <string name="title_platform_preferences">Platform</string>
     <string name="summary_platform_preferences">edge</string>

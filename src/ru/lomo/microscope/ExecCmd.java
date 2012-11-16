@@ -20,23 +20,6 @@ public class ExecCmd implements Runnable {
 		status = true;
 	}
 
-	private void sendLogs(InputStream stdstream) {
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					stdstream));
-			while (true) {
-				String line = reader.readLine();
-				if (line == null)
-					break;
-				Log.d("microscope", line);
-			}
-			reader.close();
-		} catch (IOException e) {
-			status = false;
-			e.printStackTrace();
-		}
-	}
-
 	public void run() {
 		try {
 			Process process = Runtime.getRuntime().exec(params.get(0));
@@ -69,6 +52,23 @@ public class ExecCmd implements Runnable {
 			stdin.close();
 			stdout.close();
 		} catch (Exception e) {
+			status = false;
+			e.printStackTrace();
+		}
+	}
+
+	private void sendLogs(InputStream stdstream) {
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					stdstream));
+			while (true) {
+				String line = reader.readLine();
+				if (line == null)
+					break;
+				Log.d("microscope", line);
+			}
+			reader.close();
+		} catch (IOException e) {
 			status = false;
 			e.printStackTrace();
 		}

@@ -35,6 +35,24 @@ public class Microscope extends Activity {
 	private final int imgSize = 50000;
 	private boolean isActive = false;
 
+	static {
+		System.loadLibrary("microscope");
+	}
+
+	public native ByteBuffer allocNativeBuffer(long size);
+
+	public native String capture(ByteBuffer globalRef, long imgSize);
+	
+	public native String open(String device);
+	
+	public native String close();
+
+	public native void freeNativeBuffer(ByteBuffer globalRef);
+	
+	public static void printStatusMsg(String msg) {
+		logView.setText(msg);
+	}
+	
 	private void showStatus(final String msg) {
 		handler.post(new Runnable() {
 			public void run() {
@@ -98,7 +116,7 @@ public class Microscope extends Activity {
 				String imgPath = sp.getString("imgpath", root.getAbsolutePath());
 				image.setDrawingCacheEnabled(true);
 				Bitmap bitmap = image.getDrawingCache();
-				String fName = "microscope_"
+				String fName = "micro_"
 						+ new SimpleDateFormat("yyMMddHHmmss", Locale.US)
 								.format(new Date()) + ".jpg";
 				File file = new File(imgPath + "/" + fName);
@@ -107,7 +125,7 @@ public class Microscope extends Activity {
 					FileOutputStream ostream = new FileOutputStream(file);
 					bitmap.compress(CompressFormat.JPEG, 100, ostream);
 					ostream.close();
-					showStatus("Saved: " + fName);
+					showStatus("Saved: " + file.getPath());
 				} catch (Exception e) {
 					e.printStackTrace();
 					showStatus("Save error");
@@ -152,22 +170,10 @@ public class Microscope extends Activity {
 		return false;
 	}
 
-	public static void printStatusMsg(String msg) {
-		logView.setText(msg);
+	@Override
+	public void onPause() {
+		super.onPause();
+		isActive = false;
 	}
-
-	static {
-		System.loadLibrary("microscope");
-	}
-
-	public native String close();
-
-	public native String open(String device);
-
-	public native String capture(ByteBuffer globalRef, long imgSize);
-
-	public native ByteBuffer allocNativeBuffer(long size);
-
-	public native void freeNativeBuffer(ByteBuffer globalRef);
 
 }
