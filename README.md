@@ -1,7 +1,7 @@
 Microscope
 ==========
 
-Microscope - the software for Android to access the microscope Expert produced by LOMO.
+Microscope - the software for Android to access the digital microscope Expert produced by LOMO.
 
 Copyright (C) 2011  Anton Skshidlevsky
 
