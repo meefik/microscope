@@ -37,7 +37,6 @@ public class PreferencesActivity extends PreferenceActivity implements
 			SharedPreferences sp = PreferenceManager
 					.getDefaultSharedPreferences(getBaseContext());
 			String platform = sp.getString("platform", "edge");
-			System.out.println("############# "+platform);
 			in = assetManager.open("drivers/" + platform + "/" + filename);
 			String newFileName = FILES_DIR + File.separator + filename;
 			out = new FileOutputStream(newFileName);
