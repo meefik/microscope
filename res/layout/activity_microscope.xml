@@ -26,11 +26,17 @@
             android:layout_height="wrap_content"
             android:text="@string/save_button" />
 
-        <TextView
-            android:id="@+id/textView1"
+        <Button
+            android:id="@+id/setBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/result_code" />
+            android:text="@string/set_button" />
+
+        <Button
+            android:id="@+id/flipBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/flip_button" />
 
     </LinearLayout>
 
@@ -39,6 +45,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"
-        android:src="@drawable/ic_launcher" />
+        android:src="@raw/microphoto" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/result_code" />
 
 </RelativeLayout>

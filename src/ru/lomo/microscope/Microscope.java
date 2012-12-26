@@ -14,6 +14,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 public class Microscope extends Activity {
@@ -30,10 +32,12 @@ public class Microscope extends Activity {
 	static Handler handler;
 	private static TextView logView;
 	private static TextView tv;
-	private static ImageView image;
+	private static ImageView iv;
 
 	private final int imgSize = 50000;
 	private boolean isActive = false;
+	
+	private boolean rotateState = false;
 
 	static {
 		System.loadLibrary("microscope");
@@ -84,7 +88,7 @@ public class Microscope extends Activity {
 
 					handler.post(new Runnable() {
 						public void run() {
-							image.setImageBitmap(bMap);
+							iv.setImageBitmap(bMap);
 						}
 					});
 				}
@@ -105,7 +109,9 @@ public class Microscope extends Activity {
 
 		handler = new Handler();
 		tv = (TextView) findViewById(R.id.textView1);
-		image = (ImageView) findViewById(R.id.imageView1);
+		iv = (ImageView) findViewById(R.id.imageView1);
+		
+		iv.setScaleType(ScaleType.MATRIX);
 
 		final Button captureBtn = (Button) findViewById(R.id.saveBtn);
 		captureBtn.setOnClickListener(new View.OnClickListener() {
@@ -114,8 +120,8 @@ public class Microscope extends Activity {
 				SharedPreferences sp = PreferenceManager
 						.getDefaultSharedPreferences(getApplicationContext());
 				String imgPath = sp.getString("imgpath", root.getAbsolutePath());
-				image.setDrawingCacheEnabled(true);
-				Bitmap bitmap = image.getDrawingCache();
+				iv.setDrawingCacheEnabled(true);
+				Bitmap bitmap = iv.getDrawingCache();
 				String fName = "micro_"
 						+ new SimpleDateFormat("yyMMddHHmmss", Locale.US)
 								.format(new Date()) + ".jpg";
@@ -130,7 +136,7 @@ public class Microscope extends Activity {
 					e.printStackTrace();
 					showStatus("Save error");
 				}
-				image.setDrawingCacheEnabled(false);
+				iv.setDrawingCacheEnabled(false);
 			}
 		});
 		final Button startBtn = (Button) findViewById(R.id.startBtn);
@@ -146,6 +152,24 @@ public class Microscope extends Activity {
 		stopBtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				isActive = false;
+			}
+		});
+		
+		final Button flipBtn = (Button) findViewById(R.id.flipBtn);
+		flipBtn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Matrix matrix = new Matrix();
+				float rotate;
+				if (rotateState) {
+					rotate = 0f;
+					rotateState = false;
+				} else {
+					rotate = 180f;
+					rotateState = true;
+				}
+				matrix.postRotate(rotate, iv.getDrawable().getBounds()
+						.width() / 2, iv.getDrawable().getBounds().height() / 2);
+				iv.setImageMatrix(matrix);
 			}
 		});
 	}
