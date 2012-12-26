@@ -137,8 +137,8 @@ public class Microscope extends Activity implements OnTouchListener {
 		
 		iv.setScaleType(ScaleType.MATRIX);
 
-		final Button captureBtn = (Button) findViewById(R.id.saveBtn);
-		captureBtn.setOnClickListener(new View.OnClickListener() {
+		final Button saveBtn = (Button) findViewById(R.id.saveBtn);
+		saveBtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				File root = Environment.getExternalStorageDirectory();
 				SharedPreferences sp = PreferenceManager
