@@ -73,6 +73,9 @@ public class Microscope extends Activity implements OnTouchListener {
 
 	public native String open(String device);
 
+	public native String set(int brightness, int hue, int colour, 
+								int contrast, int whiteness, int depth, int palette);
+	
 	public native String close();
 
 	public native void freeNativeBuffer(ByteBuffer globalRef);
@@ -193,6 +196,13 @@ public class Microscope extends Activity implements OnTouchListener {
 				//matrix.postRotate(rotate, iv.getDrawable().getBounds().width()/2, iv.getDrawable().getBounds().height()/2);
 				matrix.setRotate(rotate, iv.getDrawable().getBounds().width()/2, iv.getDrawable().getBounds().height()/2);
 				iv.setImageMatrix(matrix);
+			}
+		});
+		
+		final Button setBtn = (Button) findViewById(R.id.setBtn);
+		setBtn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				showStatus(set(60000,-1,-1,-1,-1,-1,-1));
 			}
 		});
 		

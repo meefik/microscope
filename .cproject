@@ -24,6 +24,7 @@
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1982451366" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/anton/Projects/android/enTourage_eDGe/edge-dingo-kernel/include"/>
 									<listOptionValue builtIn="false" value="/home/anton/android-ndk-r8b/platforms/android-4/arch-arm/usr/include"/>
+									<listOptionValue builtIn="false" value="/home/anton/android-ndk-r8d/platforms/android-4/arch-arm/usr/include"/>
 								</option>
 								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.2034681891" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
