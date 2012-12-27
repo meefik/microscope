@@ -8,9 +8,12 @@
     <string name="start_button">start</string>
     <string name="stop_button">stop</string>
     <string name="save_button">save</string>
+    <string name="get_button">get</string>
     <string name="set_button">set</string>
     <string name="flip_button">flip</string>
     <string name="result_code">status</string>
+    
+    <string name="general_preferences">General</string>
 
     <string name="title_platform_preferences">Platform</string>
     <string name="summary_platform_preferences">edge</string>
@@ -31,5 +34,35 @@
     <string name="title_removedrv_preference">Remove driver</string>
     <string name="summary_removedrv_preference">Remove microscope driver</string>
     <string name="message_removedrv_confirm_dialog">Remove microscope driver?</string>
+    
+    <string name="camera_preferences">Camera</string>
+    
+    <string name="title_brightness_preferences">Brightness</string>
+    <string name="summary_brightness_preferences">0</string>
+    <string name="dialog_title_brightness_preference">Enter brightness value (0-65535)</string>
+    
+    <string name="title_hue_preferences">Hue</string>
+    <string name="summary_hue_preferences">0</string>
+    <string name="dialog_title_hue_preference">Enter hue value (0-65535)</string>
+    
+    <string name="title_colour_preferences">Colour</string>
+    <string name="summary_colour_preferences">0</string>
+    <string name="dialog_title_colour_preference">Enter colour value (0-65535)</string>
+    
+    <string name="title_contrast_preferences">Contrast</string>
+    <string name="summary_contrast_preferences">0</string>
+    <string name="dialog_title_contrast_preference">Enter contrast value (0-65535)</string>
+    
+    <string name="title_whiteness_preferences">Whiteness</string>
+    <string name="summary_whiteness_preferences">0</string>
+    <string name="dialog_title_whiteness_preference">Enter whiteness value (0-65535)</string>
+    
+    <string name="title_depth_preferences">Depth</string>
+    <string name="summary_depth_preferences">0</string>
+    <string name="dialog_title_depth_preference">Enter depth value</string>
+    
+    <string name="title_palette_preferences">Palette</string>
+    <string name="summary_palette_preferences">0</string>
+    <string name="dialog_title_palette_preference">Enter palette value</string>    
 
 </resources>
