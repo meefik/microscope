@@ -27,10 +27,16 @@
             android:text="@string/save_button" />
 
         <Button
+            android:id="@+id/getBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/get_button" />
+        
+        <Button
             android:id="@+id/setBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/set_button" />
+            android:text="@string/set_button" />        
 
         <Button
             android:id="@+id/flipBtn"

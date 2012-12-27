@@ -3,6 +3,9 @@
 <PreferenceScreen
         xmlns:android="http://schemas.android.com/apk/res/android">
         
+    <PreferenceCategory
+            android:title="@string/general_preferences">
+        
     	<ListPreference
     	        android:key="platform"
         	    android:defaultValue="@string/summary_platform_preferences"
@@ -35,5 +38,68 @@
             	android:title="@string/title_imgpath_preferences"
             	android:summary="@string/summary_imgpath_preferences"
             	android:dialogTitle="@string/dialog_title_imgpath_preference" />
+	    
+	</PreferenceCategory>
+	
+    <PreferenceCategory
+            android:title="@string/camera_preferences">
+	    
+	   	<EditTextPreference
+    	        android:key="brightness"
+        	    android:defaultValue="0"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_brightness_preferences"
+            	android:summary="@string/summary_brightness_preferences"
+            	android:dialogTitle="@string/dialog_title_brightness_preference" />
+	   	
+	   	<EditTextPreference
+    	        android:key="hue"
+        	    android:defaultValue="0"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_hue_preferences"
+            	android:summary="@string/summary_hue_preferences"
+            	android:dialogTitle="@string/dialog_title_hue_preference" />
+	   	
+	   	<EditTextPreference
+    	        android:key="colour"
+        	    android:defaultValue="0"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_colour_preferences"
+            	android:summary="@string/summary_colour_preferences"
+            	android:dialogTitle="@string/dialog_title_colour_preference" />
+	   	
+	   	<EditTextPreference
+    	        android:key="contrast"
+        	    android:defaultValue="0"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_contrast_preferences"
+            	android:summary="@string/summary_contrast_preferences"
+            	android:dialogTitle="@string/dialog_title_contrast_preference" />
+	   	
+	   	<EditTextPreference
+    	        android:key="whiteness"
+        	    android:defaultValue="0"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_whiteness_preferences"
+            	android:summary="@string/summary_whiteness_preferences"
+            	android:dialogTitle="@string/dialog_title_whiteness_preference" />
+	   	
+	   	<EditTextPreference
+    	        android:key="depth"
+        	    android:defaultValue="0"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_depth_preferences"
+            	android:summary="@string/summary_depth_preferences"
+            	android:dialogTitle="@string/dialog_title_depth_preference" />
+	   	
+	   	<EditTextPreference
+    	        android:key="palette"
+        	    android:defaultValue="0"
+        	    android:inputType="numberDecimal"
+            	android:title="@string/title_palette_preferences"
+            	android:summary="@string/summary_palette_preferences"
+            	android:dialogTitle="@string/dialog_title_palette_preference" />
+	   	
+	</PreferenceCategory>
 
 </PreferenceScreen>

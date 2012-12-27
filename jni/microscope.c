@@ -24,6 +24,53 @@
 
 int fd = -1;
 
+JNIEXPORT jstring JNICALL Java_ru_lomo_microscope_Microscope_get
+  (JNIEnv * env, jobject obj) {
+
+	/*** variable definitions ***/
+	struct video_capability cap;
+	struct video_window win;
+	struct video_picture vpic;
+
+	/* initialize variables */
+	cap.name[0] = '\0';
+	cap.type = cap.maxwidth = cap.minwidth =
+	cap.maxheight = cap.minheight = 0;
+	win.width = win.height = 0;
+	vpic.brightness = vpic.hue = vpic.colour = vpic.contrast = vpic.whiteness =
+	vpic.depth = vpic.palette = 0;
+
+	/* query device capabilities */
+	if (ioctl(fd, VIDIOCGCAP, &cap) < 0) {
+		close(fd);
+		return (*env)->NewStringUTF(env, "Not a video4linux device");
+	}
+
+	/* query current video window settings */
+	if (ioctl(fd, VIDIOCGWIN, &win) < 0) {
+		close(fd);
+		return (*env)->NewStringUTF(env, "Video window settings error");
+	}
+
+	/* query image properties */
+	if (ioctl(fd, VIDIOCGPICT, &vpic) < 0) {
+		close(fd);
+		return (*env)->NewStringUTF(env, "Image properties error");
+	}
+
+	char* brightness[5];
+	char* hue[5];
+	char* colour[5];
+	char* contrast[5];
+	char* whiteness[5];
+	char* depth[5];
+	char* palette[5];
+	sprintf(brightness, "%d;%d;%d;%d;%d;%d;%d", vpic.brightness,vpic.hue,vpic.colour,vpic.contrast,
+			vpic.whiteness,vpic.depth,vpic.palette);
+
+	return (*env)->NewStringUTF(env, brightness);
+}
+
 JNIEXPORT jstring JNICALL Java_ru_lomo_microscope_Microscope_set
   (JNIEnv * env, jobject obj, jint brightness, jint hue, jint colour, jint contrast, jint whiteness,
 		  jint depth, jint palette) {
@@ -50,12 +97,6 @@ JNIEXPORT jstring JNICALL Java_ru_lomo_microscope_Microscope_set
 	//int32_t brightness = -1, hue = -1, colour = -1, contrast = -1,
 	//		whiteness = -1, depth = -1, palette = -1;
 	uint32_t width=0, height=0;
-
-	/* program operation flags */
-	int verbose = 0;
-	int quiet = 0;
-	int set_max_size = 0;
-	int set_min_size = 0;
 
 	/* initialize variables */
 	cap.name[0] = '\0';

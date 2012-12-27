@@ -72,6 +72,8 @@ public class Microscope extends Activity implements OnTouchListener {
 	public native String capture(ByteBuffer globalRef, long imgSize);
 
 	public native String open(String device);
+	
+	public native String get();
 
 	public native String set(int brightness, int hue, int colour, 
 								int contrast, int whiteness, int depth, int palette);
@@ -107,7 +109,8 @@ public class Microscope extends Activity implements OnTouchListener {
 				while (isActive) {
 					// for (int i=0; i < 3; i++) {
 					mImageData.clear();
-					showStatus(capture(mImageData, size));
+					capture(mImageData, size);
+					//showStatus(capture(mImageData, size));
 
 					mImageData.get(bytes, 0, size);
 					final Bitmap bMap = BitmapFactory.decodeByteArray(bytes, 0,
@@ -198,11 +201,37 @@ public class Microscope extends Activity implements OnTouchListener {
 				iv.setImageMatrix(matrix);
 			}
 		});
+
+		final Button getBtn = (Button) findViewById(R.id.getBtn);
+		getBtn.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				SharedPreferences sp = PreferenceManager
+						.getDefaultSharedPreferences(getApplicationContext());
+				SharedPreferences.Editor prefEditor = sp.edit();
+				String[] mKey = { "brightness","hue","colour","contrast",
+						"whiteness","depth","palette" };
+				String[] mVal = get().split(";");
+				for (int i = 0; i < 7; i++) {
+					prefEditor.putString(mKey[i], mVal[i]);
+				}
+				prefEditor.commit();
+			}
+		});
 		
 		final Button setBtn = (Button) findViewById(R.id.setBtn);
 		setBtn.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				showStatus(set(60000,-1,-1,-1,-1,-1,-1));
+				SharedPreferences sp = PreferenceManager
+						.getDefaultSharedPreferences(getApplicationContext());
+				int brightness, hue, colour, contrast, whiteness, depth, palette;
+				brightness = Integer.parseInt(sp.getString("brightness", "0"));
+				hue = Integer.parseInt(sp.getString("hue", "0"));
+				colour = Integer.parseInt(sp.getString("colour", "0"));
+				contrast = Integer.parseInt(sp.getString("contrast", "0"));
+				whiteness = Integer.parseInt(sp.getString("whiteness", "0"));
+				depth = Integer.parseInt(sp.getString("depth", "0"));
+				palette = Integer.parseInt(sp.getString("palette", "0"));
+				showStatus(set(brightness,hue,colour,contrast,whiteness,depth,palette));
 			}
 		});
 		
@@ -298,7 +327,7 @@ public class Microscope extends Activity implements OnTouchListener {
 	      return true;
 	}
 	
-	/** Determine the space between the first two fingers */
+	// Determine the space between the first two fingers
 	@SuppressLint("NewApi")
 	private float spacing(MotionEvent event) {
 	    float x = event.getX(0) - event.getX(1);
@@ -306,7 +335,7 @@ public class Microscope extends Activity implements OnTouchListener {
 	    return FloatMath.sqrt(x * x + y * y);
 	}
 
-	/** Calculate the mid point of the first two fingers */
+	// Calculate the mid point of the first two fingers
 	@SuppressLint("NewApi")
 	private void midPoint(PointF point, MotionEvent event) {
 		float x = event.getX(0) + event.getX(1);
