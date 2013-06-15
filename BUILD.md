@@ -1,9 +1,11 @@
 Build kernel module for Android
 ===============================
 
-1) Get kernel source (kernel version should match the version of the device, e.g. 2.6.29):
+1) Get kernel source (kernel version should match version of the device, e.g. 2.6.29):
 
-    $ git clone https://android.googlesource.com/kernel/common android-2.6.29
+    $ git clone https://android.googlesource.com/kernel/common android
+    $ git branch -a
+    $ git checkout android-2.6.29
 
 2) Use Sourcery G++ Lite for ARM EABI to build:
 
