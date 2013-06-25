@@ -7,7 +7,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -328,7 +327,6 @@ public class Microscope extends Activity implements OnTouchListener {
 	}
 	
 	// Determine the space between the first two fingers
-	@SuppressLint("NewApi")
 	private float spacing(MotionEvent event) {
 	    float x = event.getX(0) - event.getX(1);
 	    float y = event.getY(0) - event.getY(1);
@@ -336,7 +334,6 @@ public class Microscope extends Activity implements OnTouchListener {
 	}
 
 	// Calculate the mid point of the first two fingers
-	@SuppressLint("NewApi")
 	private void midPoint(PointF point, MotionEvent event) {
 		float x = event.getX(0) + event.getX(1);
 	    float y = event.getY(0) + event.getY(1);
