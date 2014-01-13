@@ -191,16 +191,16 @@ JNIEXPORT jstring JNICALL Java_ru_lomo_microscope_Microscope_open(JNIEnv * env,
 	(*env)->ReleaseStringUTFChars(env, device, devicename);
 
 	/* query device capabilities */
-	if (ioctl(fd, VIDIOCGCAP, &cap) < 0) {
-		close(fd);
-		return (*env)->NewStringUTF(env, "Not a video4linux device");
-	}
+	//if (ioctl(fd, VIDIOCGCAP, &cap) < 0) {
+	//	close(fd);
+	//	return (*env)->NewStringUTF(env, "Not a video4linux device");
+	//}
 
 	/* exit if device can not capture to memory */
-	if (!(cap.type & VID_TYPE_CAPTURE)) {
-		return (*env)->NewStringUTF(env,
-				"Device cannot capture");
-	}
+	//if (!(cap.type & VID_TYPE_CAPTURE)) {
+	//	return (*env)->NewStringUTF(env,
+	//			"Device cannot capture");
+	//}
 
 	/* capture image*/
 	ssize_t bytesread;

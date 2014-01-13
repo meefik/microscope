@@ -28,3 +28,27 @@ Build kernel module for Android
     # insmod /system/lib/modules/gspca_main.ko
     # insmod /system/lib/modules/gspca_zc3xx.ko
 
+
+Build kernel for Android
+========================
+
+For Nexus 7 (2013):
+
+1) Get kernel source:
+
+    git clone https://github.com/meefik/tinykernel-flo.git
+    cd tinykernel-flo
+    
+2) Use Android NDK for build kernel (http://source.android.com/source/building-kernels.html):
+
+    export ARCH=arm
+    export SUBARCH=arm
+    export CROSS_COMPILE=arm-linux-androideabi-
+    export PATH=$HOME/android-ndk-r8d/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86/bin:$PATH
+    make flo_defconfig
+    make menuconfig
+    make
+
+3) After make change image compression to XZ.
+
+4) Create update.zip and upgrade the device.
